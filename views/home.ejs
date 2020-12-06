@@ -1,15 +1,15 @@
 
 <%- include('partials/header') %>
 
-<h1>Home</h1>
+</br><h1>Welome To MyBlog!</h1></br>
 
-<p> <%-startingContent%></p>
+<h3> <%-startingContent%></h3></br>
     
 
     <% posts.forEach(function(post){ %>
     <h1><%= post.title %></h1>
     <p><%= post.content.substring(0, 100) + " ..." %></p>
-    <a href="/posts/<%= post.title %>">Read More</a>
+    <a href="/posts/<%= post._id %>">Read More</a>
     <% }) %>
 
 
