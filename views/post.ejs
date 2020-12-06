@@ -3,6 +3,10 @@
 </br><h1><%= title %></h1>
 <p><%= content %></p>
 
+    <form action='/posts/<%=title%>' method="post">
+        <button type="submit" name="button" value="<%= title%>">Delete</a>
+        <input type="hidden" name="title" value="<%= title %>"></input>
+    </form>
 
 
 

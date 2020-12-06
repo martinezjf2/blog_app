@@ -60,10 +60,20 @@ app.post("/compose", function(req,res) {
   });
 });
 
-app.get("/posts/:postId", function(req, res){
+app.post("/posts/:postTitle", function(req, res) {
+    const post = req.body.title;
+    Post.findOneAndDelete({title: post}, function(err){
+        if (!err) {
+          console.log("Deleted Successfully");
+          res.redirect("/")
+        }
+    });
+});
+
+app.get("/posts/:postTitle", function(req, res){
   // const requestedTitle = _.lowerCase(req.params.postTitle);
-  const requestedId = req.params.postId
-  Post.findOne({_id: requestedId}, function(err, post){
+  const requestedId = req.params.postTitle
+  Post.findOne({title: requestedId}, function(err, post){
     res.render("post", {
       title: post.title,
       content: post.content})
