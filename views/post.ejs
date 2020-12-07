@@ -1,12 +1,24 @@
 <%- include('partials/header') %>
 
-</br><h1><%= title %></h1>
-<p><%= content %></p>
 
-    <form action='/posts/<%=title%>' method="post">
-        <button type="submit" name="button" value="<%= title%>">Delete</a>
-        <input type="hidden" name="title" value="<%= title %>"></input>
+<div class="container">
+    <h1><%= title %></h1>
+    <p><%= content %></p>
+</div>
+
+
+<div>
+    <form action='/posts/<%=postId%>' method="post" class="deleteButton">
+        <button class="btn btn-lg btn-link deleteButton" type="submit" name="button" value="" >Delete</button>
+        <input type="hidden" name="title" value=""></input>
     </form>
+</div>
+
+
+    <!-- <form action='/posts/<%=title%>' method="patch">
+        <button type="submit" name="button" value="<%= title%>">Edit</button>
+        <input type="hidden" name="title" value="<%= title %>"></input>
+    </form> -->
 
 
 

@@ -39,10 +39,6 @@ app.get("/", function(req,res){
   // console.log(posts)
 });
 
-app.get("/about", function(req, res){
-  res.render("about", {abContent: aboutContent});
-});
-
 app.get("/compose", function(req, res){
   res.render("compose");
 });
@@ -60,9 +56,9 @@ app.post("/compose", function(req,res) {
   });
 });
 
-app.post("/posts/:postTitle", function(req, res) {
-    const post = req.body.title;
-    Post.findOneAndDelete({title: post}, function(err){
+app.post("/posts/:postId", function(req, res) {
+    const postId = req.params.postId;
+    Post.findOneAndDelete({_id: postId}, function(err){
         if (!err) {
           console.log("Deleted Successfully");
           res.redirect("/")
@@ -70,15 +66,25 @@ app.post("/posts/:postTitle", function(req, res) {
     });
 });
 
-app.get("/posts/:postTitle", function(req, res){
-  // const requestedTitle = _.lowerCase(req.params.postTitle);
-  const requestedId = req.params.postTitle
-  Post.findOne({title: requestedId}, function(err, post){
+app.get("/posts/:postId", function(req, res){
+  const requestedId = req.params.postId;
+  // console.log(req)
+  Post.findOne({_id: requestedId}, function(err, post){
     res.render("post", {
       title: post.title,
-      content: post.content})
+      content: post.content,
+      postId: requestedId})
   })
 });
+
+// app.get("/posts/:postTitle/edit", function(req, res) {
+//   console.log(req);
+//   const title = req.params.postTitle
+//   // Post.findOne({title: title}, function(err, post){
+//   //   res.render("edit", {title: post.title, content: post.content})
+//   // })
+//   res.render("edit", {title: title})
+// })
 
 
 app.listen(3000, function() {
