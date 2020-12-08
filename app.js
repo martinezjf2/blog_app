@@ -77,14 +77,12 @@ app.get("/posts/:postId", function(req, res){
   })
 });
 
-// app.get("/posts/:postTitle/edit", function(req, res) {
-//   console.log(req);
-//   const title = req.params.postTitle
-//   // Post.findOne({title: title}, function(err, post){
-//   //   res.render("edit", {title: post.title, content: post.content})
-//   // })
-//   res.render("edit", {title: title})
-// })
+app.get("/compose/:postId/edit", function(req, res) {
+  const requestedId = req.params.postId
+  Post.findOne({_id: requestedId}, function(err, post){
+    res.render("edit", {title: post.title, content: post.content})
+})})
+
 
 
 app.listen(3000, function() {

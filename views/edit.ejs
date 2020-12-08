@@ -8,11 +8,11 @@
 <form class="" action="/edit" method="POST">
     <div class="form-group">
         <label for="title" class="">Title</label>
-        <input type="text" class="form-control" name="postTitle" autocomplete="off" placeholder="" >
+        <input type="text" class="form-control" name="postTitle" autocomplete="off" placeholder="" value="<%=title%>"></input>
     </div>
     <div class="form-group">
         <label for="postContent" class="">Post</label>
-        <textarea type="text" class="form-control" name="postBody" cols="40" rows="5" autocomplete="off"></textarea>
+        <textarea type="text" class="form-control" name="postBody" cols="40" rows="5" autocomplete="off"><%=content%></textarea>
     </div>
         <button type="submit" class="btn btn-primary" name="button">Publish</button>
 </form>

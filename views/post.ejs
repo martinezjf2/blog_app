@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
 
-<div class="container">
+<div class="">
     <h1><%= title %></h1>
     <p><%= content %></p>
 </div>
@@ -15,10 +15,8 @@
 </div>
 
 
-    <!-- <form action='/posts/<%=title%>' method="patch">
-        <button type="submit" name="button" value="<%= title%>">Edit</button>
-        <input type="hidden" name="title" value="<%= title %>"></input>
-    </form> -->
+    
+<a href='/compose/<%=postId%>/edit' class="tn btn-lg btn-link deleteButton">Edit</a>        
 
 
 
