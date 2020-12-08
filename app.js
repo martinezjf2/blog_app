@@ -77,10 +77,29 @@ app.get("/posts/:postId", function(req, res){
   })
 });
 
+app.post("/compose/:postId/edit", function(req, res){
+  const requestedId = req.params.postId;
+  const newPost = {
+    // postId: requestedId,
+    title: req.body.postTitle,
+    content: req.body.postBody
+  };
+  Post.findByIdAndUpdate({_id: requestedId}, {$set: {newPost}}, function(err, post){
+    if (!err) {
+      console.log("Successfully Updated", post)
+      res.render("post", {
+        postId: requestedId,
+        title: post.title,
+        content: post.content
+      })
+    }
+  })
+})
+
 app.get("/compose/:postId/edit", function(req, res) {
   const requestedId = req.params.postId
   Post.findOne({_id: requestedId}, function(err, post){
-    res.render("edit", {title: post.title, content: post.content})
+    res.render("edit", {title: post.title, content: post.content, postId: requestedId})
 })})
 
 
