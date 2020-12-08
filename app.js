@@ -6,7 +6,7 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
 const postSchema = {
   title: String,
   content: String
@@ -84,13 +84,13 @@ app.post("/compose/:postId/edit", function(req, res){
     title: req.body.postTitle,
     content: req.body.postBody
   };
-  Post.findByIdAndUpdate({_id: requestedId}, {$set: {newPost}}, function(err, post){
+  Post.findByIdAndUpdate(requestedId, newPost, function(err, post){
     if (!err) {
-      console.log("Successfully Updated", post)
+      // console.log("Successfully Updated", post)
       res.render("post", {
         postId: requestedId,
-        title: post.title,
-        content: post.content
+        title: newPost.title,
+        content: newPost.content
       })
     }
   })
