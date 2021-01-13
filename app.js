@@ -5,6 +5,11 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
+const session = require('express-session')
+const passport = require('passport')
+const passportLocalMongoose = require('passport-local-mongoose')
+const GoogleStrategy = require('passport-google-oauth20')
+const findOrCreate = require('mongoose-findorcreate')
 
 mongoose.connect("mongodb+srv://admin_jeffrey:Jj419450@cluster0.3wq2y.mongodb.net/blogDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
 const postSchema = {
