@@ -11,11 +11,38 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const GoogleStrategy = require('passport-google-oauth20')
 const findOrCreate = require('mongoose-findorcreate')
 
+const app = express();
+app.set('view engine', 'ejs');
+app.use(express.static("public"));
+
+app.use(session({
+  secret: "Our little secret.",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 mongoose.connect("mongodb+srv://admin_jeffrey:Jj419450@cluster0.3wq2y.mongodb.net/blogDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
+
+const userSchema = {
+  email: String,
+  password: String,
+  googleId: String,
+  secret: String
+  // ,
+  // posts: [{postSchema}]
+}
+
 const postSchema = {
   title: String,
   content: String
+
 };
+
+// userSchema.plugin(passportLocalMongoose);
+// userSchema.plugin(findOrCreate);
 
 const Post = mongoose.model("Post", postSchema);
 
@@ -25,15 +52,12 @@ const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pelle
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 // let posts = []
 
-const app = express();
-
-app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
 
 
-app.get("/", function(req,res){
+
+app.get("/home", function(req,res){
   Post.find({}, function(err, posts){
     res.render("home", {
       startingContent: homeStartingContent,
@@ -56,7 +80,7 @@ app.post("/compose", function(req,res) {
 
   post.save(function(err){
     if (!err) {
-      res.redirect("/");
+      res.redirect("/home");
     }
   });
 });
@@ -66,7 +90,7 @@ app.post("/posts/:postId", function(req, res) {
     Post.findOneAndDelete({_id: postId}, function(err){
         if (!err) {
           console.log("Deleted Successfully");
-          res.redirect("/")
+          res.redirect("/home")
         }
     });
 });
