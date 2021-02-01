@@ -1,12 +1,13 @@
 //jshint esversion:6
 
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://admin_jeffrey:Jj419450@cluster0.3wq2y.mongodb.net/blogDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
+mongoose.connect(`mongodb+srv://${process.env.CLIENT}:${process.env.CLIENTID}@cluster0.3wq2y.mongodb.net/blogDB?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
 const postSchema = {
   title: String,
   content: String
