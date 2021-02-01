@@ -1,23 +1,27 @@
 {
-  "name": "ejs-challenge",
+  "name": "blog-project-ejs",
   "version": "1.0.0",
+  "description": "<!--- These are examples. See https://shields.io for others or to customize this set of shields. You might want to include dependencies, project status and licence info here ---> ![GitHub repo size](https://img.shields.io/github/repo-size/scottydocs/README-template.md) ![GitHub contributors](https://img.shields.io/github/contributors/scottydocs/README-template.md) ![GitHub stars](https://img.shields.io/github/stars/scottydocs/README-template.md?style=social) ![GitHub forks](https://img.shields.io/github/forks/scottydocs/README-template.md?style=social) ![Twitter Follow](https://img.shields.io/twitter/follow/scottydocs?style=social)",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinezjf2/blog_app.git"
+  },
   "author": "Jeffrey Martinez",
   "license": "ISC",
-  "engines": {
-    "node": "14.4.0",
-    "npm": "6.14.8"
+  "bugs": {
+    "url": "https://github.com/martinezjf2/blog_app/issues"
   },
+  "homepage": "https://github.com/martinezjf2/blog_app#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.11.4"
-  },
-  "description": ""
+    "mongoose": "^5.11.14"
+  }
 }
